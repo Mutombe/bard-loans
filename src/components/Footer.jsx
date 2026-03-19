@@ -30,16 +30,18 @@ export default function Footer() {
   }
 
   return (
-    <footer id="contact" className="bg-navy-light border-t border-white/5">
+    <footer id="contact" className="bg-navy-light relative">
+      {/* Soft gradient line instead of hard border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="mb-4 inline-block bg-white/90 rounded-lg px-3 py-1.5">
+            <div className="mb-4">
               <img
                 src="/logo.png"
                 alt="Bard Loans"
-                className="h-8 w-auto"
+                className="h-10 w-auto brightness-0 invert"
               />
             </div>
             <p className="text-white/40 text-sm font-inter leading-relaxed mb-6">

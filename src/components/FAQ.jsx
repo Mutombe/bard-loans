@@ -84,7 +84,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="faq" className="py-20 lg:py-32 bg-white dark:bg-navy transition-colors duration-300">
+    <section id="faq" className="py-16 sm:py-20 lg:py-32 bg-white dark:bg-navy transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

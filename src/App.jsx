@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import About from './components/About'
+import SectionDivider from './components/SectionDivider'
 import Offerings from './components/Offerings'
 import LoanCalculator from './components/LoanCalculator'
 import Requirements from './components/Requirements'
@@ -30,10 +31,34 @@ function App() {
         <Hero />
         <TrustBar />
         <About />
+        <SectionDivider
+          pattern="diamond"
+          height={80}
+          fromColor="white"
+          toColor="pearl"
+          fromColorDark="navy"
+          toColorDark="navy-light"
+        />
         <Offerings />
         <LoanCalculator />
+        <SectionDivider
+          pattern="logoGrid"
+          height={80}
+          fromColor="white"
+          toColor="pearl"
+          fromColorDark="navy"
+          toColorDark="navy-light"
+        />
         <Requirements />
         <FAQ />
+        <SectionDivider
+          pattern="diamond"
+          height={120}
+          fromColor="white"
+          toColor="navy"
+          fromColorDark="navy"
+          toColorDark="navy"
+        />
         <CTA />
         <Footer />
       </div>

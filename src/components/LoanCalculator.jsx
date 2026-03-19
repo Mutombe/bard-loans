@@ -10,6 +10,7 @@ import {
   Info,
   WhatsappLogo,
 } from '@phosphor-icons/react'
+import AnimatedButton from './AnimatedButton'
 
 const INTEREST_RATE = 0.05
 const INITIATION_RATE = 0.05
@@ -63,7 +64,7 @@ export default function LoanCalculator() {
   const amountPercent = ((loanAmount - 500) / (5000 - 500)) * 100
 
   return (
-    <section id="calculator" className="py-20 lg:py-32 bg-white dark:bg-navy transition-colors duration-300">
+    <section id="calculator" className="py-16 sm:py-20 lg:py-32 bg-white dark:bg-navy transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -71,7 +72,7 @@ export default function LoanCalculator() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-10 sm:mb-16"
         >
           <span className="text-orange font-jakarta font-semibold text-sm uppercase tracking-wider">
             Loan Calculator
@@ -266,20 +267,20 @@ export default function LoanCalculator() {
                 </div>
 
                 <div className="relative mt-8 space-y-3">
-                  <button
+                  <AnimatedButton
                     onClick={handleApply}
-                    className="btn-orange w-full flex items-center justify-center gap-2 py-4 bg-orange text-navy font-jakarta font-bold rounded-xl hover:bg-orange-dark transition-all hover:shadow-lg hover:shadow-orange/25"
+                    className="btn-orange w-full flex items-center justify-center gap-2 py-4 bg-orange text-navy font-jakarta font-bold rounded-xl hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
                   >
                     <WhatsappLogo weight="fill" size={20} />
                     Apply via WhatsApp
-                  </button>
-                  <button
+                  </AnimatedButton>
+                  <AnimatedButton
                     onClick={handleEmail}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 border border-white/20 text-white font-jakarta font-semibold rounded-xl hover:bg-white/5 transition-all text-sm"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 border border-white/20 text-white font-jakarta font-semibold rounded-xl hover:bg-white/5 transition-colors text-sm"
                   >
                     Apply via Email
                     <ArrowRight size={16} weight="bold" />
-                  </button>
+                  </AnimatedButton>
                 </div>
               </div>
             </div>

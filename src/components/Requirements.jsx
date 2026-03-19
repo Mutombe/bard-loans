@@ -44,7 +44,7 @@ const requirements = [
 
 export default function Requirements() {
   return (
-    <section id="requirements" className="py-20 lg:py-32 relative overflow-hidden transition-colors duration-300">
+    <section id="requirements" className="py-16 sm:py-20 lg:py-32 relative overflow-hidden transition-colors duration-300">
       {/* Background image blended in */}
       <div className="absolute inset-0">
         <img
@@ -55,11 +55,15 @@ export default function Requirements() {
         {/* Heavy overlay to blend with the section — light mode: pearl wash, dark mode: navy wash */}
         <div className="absolute inset-0 bg-pearl/90 dark:bg-navy-light/93 backdrop-blur-[2px]" />
       </div>
+      {/* Top fade */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-pearl dark:from-navy-light to-transparent z-[1]" />
+      {/* Bottom fade into white */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-navy to-transparent z-[1]" />
       {/* Decorative blurs */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-orange/5 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange/5 rounded-full blur-[100px]" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

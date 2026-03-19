@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowRight, ShieldCheck, Clock, CurrencyCircleDollar, CheckCircle } from '@phosphor-icons/react'
+import AnimatedButton from './AnimatedButton'
 
 const images = [
   {
@@ -24,6 +25,30 @@ const textLine = {
     y: 0,
     transition: { delay: 0.3 + i * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   }),
+}
+
+function HeroCountUp({ end, prefix = '', suffix = '', duration = 2000 }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { margin: '-50px' })
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!isInView) { setCount(0); return }
+    let startTime = null
+    let frame
+    const animate = (ts) => {
+      if (!startTime) startTime = ts
+      const p = Math.min((ts - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setCount(Math.floor(eased * end))
+      if (p < 1) frame = requestAnimationFrame(animate)
+    }
+    frame = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(frame)
+  }, [isInView, end, duration])
+
+  const formatted = end >= 1000 ? count.toLocaleString('en-ZA') : count.toString()
+  return <span ref={ref}>{prefix}{formatted}{suffix}</span>
 }
 
 export default function Hero() {
@@ -55,18 +80,21 @@ export default function Hero() {
           />
         </AnimatePresence>
 
-        {/* ═══ Gradient overlay: solid navy left → transparent right ═══ */}
+        {/* Gradient overlay: mobile = heavier uniform cover, desktop = left-to-right reveal */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(49,47,77,0.92) 0%, rgba(49,47,77,0.85) 50%, rgba(49,47,77,0.75) 100%)',
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden lg:block"
           style={{
             background:
               'linear-gradient(to right, rgba(49,47,77,0.97) 0%, rgba(49,47,77,0.92) 25%, rgba(49,47,77,0.75) 50%, rgba(49,47,77,0.35) 70%, rgba(49,47,77,0.10) 85%, rgba(49,47,77,0.03) 100%)',
           }}
         />
-        {/* Extra top/bottom vignette for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-navy/40 via-transparent to-navy/60" />
-
-        {/* Subtle grid pattern on the text side */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -80,7 +108,7 @@ export default function Hero() {
       {/* ═══ Content layer ═══ */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-0 w-full min-h-screen flex items-center">
         <div className="grid lg:grid-cols-12 gap-8 items-center w-full">
-          {/* ── Left: Text content (takes ~7 cols) ── */}
+          {/* ── Left: Text content ── */}
           <div className="lg:col-span-7 text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -110,7 +138,10 @@ export default function Hero() {
                 className="block text-white drop-shadow-lg"
               >
                 Your{' '}
-                <span className="text-orange relative">
+                <a
+                  href="#offerings"
+                  className="text-orange relative inline-block hover:text-orange-light transition-colors"
+                >
                   Financial
                   <svg
                     className="absolute -bottom-1 left-0 w-full"
@@ -127,7 +158,7 @@ export default function Hero() {
                       transition={{ delay: 1, duration: 0.8, ease: 'easeInOut' }}
                     />
                   </svg>
-                </span>
+                </a>
               </motion.span>
               <motion.span
                 custom={2}
@@ -156,9 +187,9 @@ export default function Hero() {
               transition={{ delay: 1, duration: 0.7 }}
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <a
+              <AnimatedButton
                 href="#calculator"
-                className="btn-orange group inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange text-navy font-jakarta font-bold text-lg rounded-xl hover:bg-orange-dark transition-all hover:shadow-lg hover:shadow-orange/25"
+                className="btn-orange group inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange text-navy font-jakarta font-bold text-lg rounded-xl hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
               >
                 Calculate Your Loan
                 <ArrowRight
@@ -166,13 +197,13 @@ export default function Hero() {
                   weight="bold"
                   className="transition-transform group-hover:translate-x-1"
                 />
-              </a>
-              <a
+              </AnimatedButton>
+              <AnimatedButton
                 href="#about"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-jakarta font-semibold text-lg rounded-xl hover:bg-white/5 backdrop-blur-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-jakarta font-semibold text-lg rounded-xl hover:bg-white/5 backdrop-blur-sm transition-colors"
               >
                 Learn More
-              </a>
+              </AnimatedButton>
             </motion.div>
 
             {/* Trust badges */}
@@ -195,14 +226,16 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Right: Floating cards (takes ~5 cols, positioned over the visible image) ── */}
+          {/* ── Right: Clickable floating cards with count-ups ── */}
           <div className="lg:col-span-5 hidden lg:flex flex-col items-end justify-center gap-6 relative h-[500px]">
-            {/* Approved card — top right area */}
-            <motion.div
+            {/* Approved card → links to calculator */}
+            <motion.a
+              href="#calculator"
               initial={{ opacity: 0, y: 40, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
+              whileHover={{ scale: 1.05, y: -4 }}
               transition={{ delay: 1.2, duration: 0.8, type: 'spring', stiffness: 100 }}
-              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-4"
+              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-4 cursor-pointer"
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-emerald/10 flex items-center justify-center">
@@ -210,7 +243,9 @@ export default function Hero() {
                 </div>
                 <div>
                   <p className="text-xs text-slate font-inter">Loan Approved</p>
-                  <p className="font-mono font-bold text-navy text-2xl">R5,000</p>
+                  <p className="font-mono font-bold text-navy text-2xl">
+                    R<HeroCountUp end={5000} duration={2000} />
+                  </p>
                 </div>
               </div>
               <div className="mt-3 flex items-center gap-2">
@@ -224,17 +259,21 @@ export default function Hero() {
                 </div>
                 <span className="text-[10px] text-emerald font-mono font-medium">Complete</span>
               </div>
-            </motion.div>
+            </motion.a>
 
-            {/* Stats card — middle right */}
-            <motion.div
+            {/* Stats card → links to about */}
+            <motion.a
+              href="#about"
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
+              whileHover={{ scale: 1.05, x: -4 }}
               transition={{ delay: 1.5, duration: 0.8, type: 'spring' }}
-              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-16"
+              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-16 cursor-pointer"
             >
               <p className="text-xs text-slate font-inter mb-1">Average Approval Time</p>
-              <p className="font-mono font-bold text-navy text-3xl">24hrs</p>
+              <p className="font-mono font-bold text-navy text-3xl">
+                <HeroCountUp end={24} duration={1200} />hrs
+              </p>
               <div className="flex gap-1 mt-3">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <motion.div
@@ -246,14 +285,16 @@ export default function Hero() {
                   />
                 ))}
               </div>
-            </motion.div>
+            </motion.a>
 
-            {/* Clients served card — bottom right */}
-            <motion.div
+            {/* Clients served card → links to about */}
+            <motion.a
+              href="#about"
               initial={{ opacity: 0, y: -30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
+              whileHover={{ scale: 1.05, y: -4 }}
               transition={{ delay: 1.8, duration: 0.8, type: 'spring', stiffness: 100 }}
-              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-6"
+              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-6 cursor-pointer"
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-orange/10 flex items-center justify-center">
@@ -261,10 +302,12 @@ export default function Hero() {
                 </div>
                 <div>
                   <p className="text-xs text-slate font-inter">Clients Served</p>
-                  <p className="font-mono font-bold text-navy text-2xl">5,000+</p>
+                  <p className="font-mono font-bold text-navy text-2xl">
+                    <HeroCountUp end={5000} suffix="+" duration={2200} />
+                  </p>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
 
             {/* Carousel indicators */}
             <motion.div
@@ -289,8 +332,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom gradient fade — white in light mode, navy-deep in dark mode */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-navy-deep to-transparent" />
+      {/* Bottom fade — bleeds into the TrustBar bridge zone */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white/30 dark:from-navy-deep/80 to-transparent" />
     </section>
   )
 }

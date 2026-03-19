@@ -18,6 +18,7 @@ const offerings = [
     color: 'bg-orange/10',
     iconColor: 'text-orange',
     span: 'sm:col-span-2 lg:col-span-1',
+    href: '#calculator',
   },
   {
     icon: Lightning,
@@ -26,6 +27,7 @@ const offerings = [
     color: 'bg-orange/10',
     iconColor: 'text-orange-dark',
     span: '',
+    href: '#calculator',
   },
   {
     icon: CurrencyCircleDollar,
@@ -34,6 +36,7 @@ const offerings = [
     color: 'bg-emerald/10',
     iconColor: 'text-emerald',
     span: '',
+    href: '#calculator',
   },
   {
     icon: Rocket,
@@ -43,6 +46,8 @@ const offerings = [
     iconColor: 'text-purple-600 dark:text-purple-400',
     span: 'lg:col-span-2',
     featured: true,
+    href: '#calculator',
+    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=400&fit=crop&q=60',
   },
   {
     icon: PaperPlaneTilt,
@@ -51,6 +56,7 @@ const offerings = [
     color: 'bg-rose-50 dark:bg-rose-500/10',
     iconColor: 'text-rose-500 dark:text-rose-400',
     span: '',
+    href: '#calculator',
   },
   {
     icon: Car,
@@ -59,6 +65,7 @@ const offerings = [
     color: 'bg-navy/5 dark:bg-white/5',
     iconColor: 'text-navy dark:text-white/70',
     span: '',
+    href: '#calculator',
   },
   {
     icon: SolarPanel,
@@ -67,90 +74,122 @@ const offerings = [
     color: 'bg-amber-50 dark:bg-amber-500/10',
     iconColor: 'text-amber-600 dark:text-amber-400',
     span: 'sm:col-span-2 lg:col-span-1',
+    href: '#calculator',
   },
 ]
 
 export default function Offerings() {
   return (
-    <section id="offerings" className="py-20 lg:py-32 bg-pearl dark:bg-navy-light transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="offerings" className="py-16 sm:py-20 lg:py-32 relative overflow-hidden transition-colors duration-300">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&h=900&fit=crop&q=60"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-pearl/[0.92] dark:bg-navy-light/[0.94] backdrop-blur-[2px]" />
+      </div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-pearl dark:from-navy-light to-transparent z-[1]" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-navy to-transparent z-[1]" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-orange/5 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange/5 rounded-full blur-[100px]" />
+
+      <div className="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-10 sm:mb-16"
         >
           <span className="text-orange font-jakarta font-semibold text-sm uppercase tracking-wider">
             Our Services
           </span>
-          <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl lg:text-5xl text-navy dark:text-white mt-3">
+          <h2 className="font-jakarta font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-navy dark:text-white mt-3">
             Loans Designed for{' '}
             <span className="text-orange">Every Need</span>
           </h2>
-          <p className="mt-4 text-slate dark:text-white/50 text-lg font-inter">
+          <p className="mt-3 sm:mt-4 text-slate dark:text-white/50 text-base sm:text-lg font-inter">
             Whether it&apos;s personal, urgent, or investment-driven — we have a loan product
             that fits your life.
           </p>
         </motion.div>
 
-        {/* Bento grid — 3 columns on desktop, asymmetric spans */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-          {offerings.map(({ icon: Icon, title, desc, color, iconColor, span, featured }, i) => (
-            <motion.div
+        {/* Bento grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
+          {offerings.map(({ icon: Icon, title, desc, color, iconColor, span, featured, href, image }, i) => (
+            <motion.a
               key={title}
+              href={href}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -4 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={`group relative rounded-2xl p-6 lg:p-7 border border-transparent dark:border-white/5 hover:border-orange/20 hover:shadow-lg hover:shadow-orange/5 transition-all cursor-pointer overflow-hidden ${span} ${
+              className={`group relative rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-7 border border-transparent dark:border-white/5 hover:border-orange/20 hover:shadow-lg hover:shadow-orange/5 transition-all cursor-pointer overflow-hidden ${span || ''} ${
                 featured
-                  ? 'bg-navy dark:bg-navy-card text-white'
+                  ? 'bg-navy dark:bg-navy-card text-white col-span-2 lg:col-span-2'
                   : 'bg-white dark:bg-navy-card'
               }`}
             >
-              {/* Decorative corner glow on featured card */}
-              {featured && (
+              {/* Quick Loans featured card — blended image */}
+              {image && (
+                <div className="absolute inset-0">
+                  <img
+                    src={image}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-navy/85 dark:bg-navy-card/90" />
+                </div>
+              )}
+
+              {/* Decorative glow on featured */}
+              {featured && !image && (
                 <div className="absolute -top-12 -right-12 w-40 h-40 bg-orange/15 rounded-full blur-[50px]" />
               )}
 
               <div className="relative">
                 <div
-                  className={`w-14 h-14 rounded-xl ${
+                  className={`w-11 h-11 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl ${
                     featured ? 'bg-orange/20' : color
-                  } flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}
+                  } flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 transition-transform`}
                 >
+                  <Icon
+                    size={24}
+                    weight="duotone"
+                    className={`sm:hidden ${featured ? 'text-orange' : iconColor}`}
+                  />
                   <Icon
                     size={28}
                     weight="duotone"
-                    className={featured ? 'text-orange' : iconColor}
+                    className={`hidden sm:block ${featured ? 'text-orange' : iconColor}`}
                   />
                 </div>
                 <h3
-                  className={`font-jakarta font-bold text-lg ${
+                  className={`font-jakarta font-bold text-sm sm:text-lg ${
                     featured ? 'text-white' : 'text-navy dark:text-white'
                   }`}
                 >
                   {title}
                 </h3>
                 <p
-                  className={`mt-2 text-sm leading-relaxed font-inter ${
+                  className={`mt-1 sm:mt-2 text-xs sm:text-sm leading-relaxed font-inter ${
                     featured ? 'text-white/60' : 'text-slate dark:text-white/50'
                   }`}
                 >
                   {desc}
                 </p>
                 <div
-                  className={`mt-4 flex items-center gap-1 text-sm font-jakarta font-semibold opacity-0 group-hover:opacity-100 transition-opacity ${
-                    featured ? 'text-orange' : 'text-orange'
-                  }`}
+                  className="mt-2 sm:mt-4 flex items-center gap-1 text-orange text-xs sm:text-sm font-jakarta font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
                 >
-                  Learn more
+                  Apply now
                   <ArrowRight size={14} weight="bold" />
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
