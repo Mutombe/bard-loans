@@ -41,7 +41,7 @@ export default function CTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange/10 text-orange text-sm font-jakarta font-semibold mb-8">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-orange/10 text-orange text-sm font-jakarta font-semibold mb-8">
             Ready to get started?
           </span>
           <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">

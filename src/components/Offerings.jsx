@@ -11,23 +11,36 @@ import {
 } from '@phosphor-icons/react'
 
 const offerings = [
+  // Row 1: Featured (4 cols) + Personal (2 cols)
+  {
+    icon: Rocket,
+    title: 'Quick Loans',
+    desc: 'Emergency cash in as little as 24 hours. Minimal paperwork, maximum speed.',
+    color: 'bg-purple-100 dark:bg-purple-500/10',
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    featured: true,
+    href: '#calculator',
+    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=400&fit=crop&q=60',
+    lgSpan: 'lg:col-span-4',
+  },
   {
     icon: Wallet,
     title: 'Personal Loans',
     desc: 'Flexible personal loans tailored to your needs. From everyday expenses to life milestones.',
     color: 'bg-orange/10',
     iconColor: 'text-orange',
-    span: 'sm:col-span-2 lg:col-span-1',
     href: '#calculator',
+    lgSpan: 'lg:col-span-2',
   },
+  // Row 2: 3 cards × 2 cols each
   {
     icon: Lightning,
     title: 'Short Term Loans',
     desc: 'Quick access to funds when you need them most. Fast approval, simple repayment.',
     color: 'bg-orange/10',
     iconColor: 'text-orange-dark',
-    span: '',
     href: '#calculator',
+    lgSpan: 'lg:col-span-2',
   },
   {
     icon: CurrencyCircleDollar,
@@ -35,19 +48,8 @@ const offerings = [
     desc: 'Loans based on your salary for easy qualification. Repay when you get paid.',
     color: 'bg-emerald/10',
     iconColor: 'text-emerald',
-    span: '',
     href: '#calculator',
-  },
-  {
-    icon: Rocket,
-    title: 'Quick Loans',
-    desc: 'Emergency cash in as little as 24 hours. Minimal paperwork, maximum speed.',
-    color: 'bg-purple-100 dark:bg-purple-500/10',
-    iconColor: 'text-purple-600 dark:text-purple-400',
-    span: 'lg:col-span-2',
-    featured: true,
-    href: '#calculator',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=400&fit=crop&q=60',
+    lgSpan: 'lg:col-span-2',
   },
   {
     icon: PaperPlaneTilt,
@@ -55,17 +57,18 @@ const offerings = [
     desc: 'Get what you need today and pay over time with manageable installments.',
     color: 'bg-rose-50 dark:bg-rose-500/10',
     iconColor: 'text-rose-500 dark:text-rose-400',
-    span: '',
     href: '#calculator',
+    lgSpan: 'lg:col-span-2',
   },
+  // Row 3: 2 cards × 3 cols each = 50/50 split
   {
     icon: Car,
     title: 'Collateral Based',
     desc: 'Use your vehicle or machinery as collateral for larger loan amounts.',
     color: 'bg-navy/5 dark:bg-white/5',
     iconColor: 'text-navy dark:text-white/70',
-    span: '',
     href: '#calculator',
+    lgSpan: 'lg:col-span-3',
   },
   {
     icon: SolarPanel,
@@ -73,8 +76,8 @@ const offerings = [
     desc: 'Solar systems, boreholes, grocery, and stands — finance the products that matter.',
     color: 'bg-amber-50 dark:bg-amber-500/10',
     iconColor: 'text-amber-600 dark:text-amber-400',
-    span: 'sm:col-span-2 lg:col-span-1',
     href: '#calculator',
+    lgSpan: 'lg:col-span-3',
   },
 ]
 
@@ -117,9 +120,9 @@ export default function Offerings() {
           </p>
         </motion.div>
 
-        {/* Bento grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
-          {offerings.map(({ icon: Icon, title, desc, color, iconColor, span, featured, href, image }, i) => (
+        {/* Bento grid — 2 cols mobile, 6 cols desktop for precise spanning */}
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
+          {offerings.map(({ icon: Icon, title, desc, color, iconColor, featured, href, image, lgSpan }, i) => (
             <motion.a
               key={title}
               href={href}
@@ -128,9 +131,9 @@ export default function Offerings() {
               whileHover={{ y: -4 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={`group relative rounded-none p-4 sm:p-6 lg:p-7 border border-transparent dark:border-white/5 hover:border-orange/20 hover:shadow-lg hover:shadow-orange/5 transition-all cursor-pointer overflow-hidden ${span || ''} ${
+              className={`group relative rounded-none p-4 sm:p-6 lg:p-7 border border-transparent dark:border-white/5 hover:border-orange/20 hover:shadow-lg hover:shadow-orange/5 transition-all cursor-pointer overflow-hidden ${lgSpan || ''} ${
                 featured
-                  ? 'bg-navy dark:bg-navy-card text-white col-span-2 lg:col-span-2'
+                  ? 'bg-navy dark:bg-navy-card text-white col-span-2'
                   : 'bg-white dark:bg-navy-card'
               }`}
             >

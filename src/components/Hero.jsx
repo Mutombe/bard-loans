@@ -80,11 +80,11 @@ export default function Hero() {
           />
         </AnimatePresence>
 
-        {/* Gradient overlay: mobile = heavier uniform cover, desktop = left-to-right reveal */}
+        {/* Gradient overlay: mobile = solid top for text, fades to reveal image below */}
         <div
           className="absolute inset-0 lg:hidden"
           style={{
-            background: 'linear-gradient(to bottom, rgba(49,47,77,0.92) 0%, rgba(49,47,77,0.85) 50%, rgba(49,47,77,0.75) 100%)',
+            background: 'linear-gradient(to bottom, rgba(49,47,77,0.88) 0%, rgba(49,47,77,0.75) 35%, rgba(49,47,77,0.55) 65%, rgba(49,47,77,0.40) 100%)',
           }}
         />
         <div
@@ -94,7 +94,7 @@ export default function Hero() {
               'linear-gradient(to right, rgba(49,47,77,0.97) 0%, rgba(49,47,77,0.92) 25%, rgba(49,47,77,0.75) 50%, rgba(49,47,77,0.35) 70%, rgba(49,47,77,0.10) 85%, rgba(49,47,77,0.03) 100%)',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/40 via-transparent to-navy/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/20 via-transparent to-navy/30 lg:from-navy/40 lg:to-navy/60" />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
