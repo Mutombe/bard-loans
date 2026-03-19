@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npx --yes create-vite temp-scaffold --template react)",
+      "Bash(cp -r temp-scaffold/* temp-scaffold/.* .)",
+      "Bash(rm -rf temp-scaffold)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx vite:*)",
+      "Bash(python -c \":*)",
+      "Bash(find . -name \"*.jsx\" -exec sed -i -e 's/text-gold/text-orange/g' -e 's/bg-gold/bg-orange/g' -e 's/border-gold/border-orange/g' -e 's/shadow-gold/shadow-orange/g' -e 's/hover:bg-gold-dark/hover:bg-orange-dark/g' -e 's/hover:text-gold/hover:text-orange/g' -e 's/btn-gold/btn-orange/g' -e 's/#F5A623/#EE7D36/g' -e 's/#D4891C/#D46A28/g' -e 's/#0A1628/#312F4D/g' -e 's/gold-dark/orange-dark/g' {} +)",
+      "Bash(cd:*)",
+      "Bash(find . -name \"*.jsx\" -exec sed -i -e 's/text-sapphire dark:text-sapphire/text-orange/g' -e 's/text-sapphire\\\\/80/text-navy-mid/g' -e 's/text-sapphire/text-orange/g' -e 's/bg-sapphire\\\\/5/bg-orange\\\\/5/g' -e 's/bg-sapphire\\\\/10/bg-orange\\\\/10/g' -e 's/bg-sapphire\\\\/15/bg-orange\\\\/12/g' -e 's/bg-sapphire rounded-l-full/bg-navy-mid rounded-l-full/g' -e 's/bg-sapphire inline-block/bg-navy-mid inline-block/g' -e 's/hover:bg-sapphire/hover:bg-orange/g' -e 's/hover:text-sapphire/hover:text-orange-dark/g' {} +)",
+      "WebFetch(domain:api.unsplash.com)"
+    ]
+  }
+}
