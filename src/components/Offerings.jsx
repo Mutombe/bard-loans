@@ -128,7 +128,7 @@ export default function Offerings() {
               whileHover={{ y: -4 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={`group relative rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-7 border border-transparent dark:border-white/5 hover:border-orange/20 hover:shadow-lg hover:shadow-orange/5 transition-all cursor-pointer overflow-hidden ${span || ''} ${
+              className={`group relative rounded-none p-4 sm:p-6 lg:p-7 border border-transparent dark:border-white/5 hover:border-orange/20 hover:shadow-lg hover:shadow-orange/5 transition-all cursor-pointer overflow-hidden ${span || ''} ${
                 featured
                   ? 'bg-navy dark:bg-navy-card text-white col-span-2 lg:col-span-2'
                   : 'bg-white dark:bg-navy-card'
@@ -153,7 +153,7 @@ export default function Offerings() {
 
               <div className="relative">
                 <div
-                  className={`w-11 h-11 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl ${
+                  className={`w-11 h-11 sm:w-14 sm:h-14 rounded-none ${
                     featured ? 'bg-orange/20' : color
                   } flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 transition-transform`}
                 >

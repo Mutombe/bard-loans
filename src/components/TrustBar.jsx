@@ -92,7 +92,7 @@ export default function TrustBar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-white/80 dark:bg-navy-card/80 backdrop-blur-xl rounded-2xl shadow-xl shadow-navy/10 dark:shadow-black/30 border border-white/60 dark:border-white/10 p-6 sm:p-8 transition-colors duration-300"
+          className="bg-white/80 dark:bg-navy-card/80 backdrop-blur-xl rounded-none shadow-xl shadow-navy/10 dark:shadow-black/30 border border-white/60 dark:border-white/10 p-6 sm:p-8 transition-colors duration-300"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {stats.map(({ icon: Icon, end, prefix, suffix, label, duration }, i) => (
@@ -109,7 +109,7 @@ export default function TrustBar() {
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 + 0.2, type: 'spring', stiffness: 200, damping: 15 }}
-                  className="w-12 h-12 mx-auto mb-3 rounded-xl bg-orange/10 flex items-center justify-center"
+                  className="w-12 h-12 mx-auto mb-3 rounded-none bg-orange/10 flex items-center justify-center"
                 >
                   <Icon size={24} weight="duotone" className="text-orange" />
                 </motion.div>

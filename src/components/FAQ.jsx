@@ -43,7 +43,7 @@ function FAQItem({ faq, isOpen, onClick }) {
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="border border-mist dark:border-white/10 rounded-xl overflow-hidden hover:border-orange/20 transition-colors"
+      className="border border-mist dark:border-white/10 rounded-none overflow-hidden hover:border-orange/20 transition-colors"
     >
       <button
         onClick={onClick}
@@ -55,7 +55,7 @@ function FAQItem({ faq, isOpen, onClick }) {
       >
         <span className="font-jakarta font-semibold text-navy dark:text-white pr-4">{faq.q}</span>
         <div
-          className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+          className={`flex-shrink-0 w-8 h-8 rounded-none flex items-center justify-center transition-colors ${
             isOpen ? 'bg-orange text-navy' : 'bg-mist dark:bg-white/10 text-slate dark:text-white/50'
           }`}
         >
@@ -126,9 +126,9 @@ export default function FAQ() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-navy dark:bg-navy-card rounded-2xl p-8 text-center border border-transparent dark:border-white/10"
+              className="bg-navy dark:bg-navy-card rounded-none p-8 text-center border border-transparent dark:border-white/10"
             >
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-orange/10 flex items-center justify-center mb-5">
+              <div className="w-16 h-16 mx-auto rounded-none bg-orange/10 flex items-center justify-center mb-5">
                 <ChatCircleDots size={32} weight="duotone" className="text-orange" />
               </div>
               <h3 className="font-jakarta font-bold text-white text-xl">
@@ -141,7 +141,7 @@ export default function FAQ() {
                 href="https://wa.me/27676151569"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald text-white font-jakarta font-semibold rounded-xl hover:bg-emerald/90 transition-colors"
+                className="mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald text-white font-jakarta font-semibold rounded-none hover:bg-emerald/90 transition-colors"
               >
                 <WhatsappLogo weight="fill" size={20} />
                 Chat with us

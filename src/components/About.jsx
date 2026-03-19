@@ -154,7 +154,7 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6, type: 'spring' }}
-              className="mt-6 sm:mt-8 inline-flex items-center gap-3 sm:gap-4 bg-navy dark:bg-navy-card rounded-xl p-4 sm:p-5 shadow-lg border border-transparent dark:border-white/10"
+              className="mt-6 sm:mt-8 inline-flex items-center gap-3 sm:gap-4 bg-navy dark:bg-navy-card rounded-none p-4 sm:p-5 shadow-lg border border-transparent dark:border-white/10"
             >
               {aboutStats.map(({ end, suffix, label, duration }, i) => (
                 <div key={label} className="flex items-center gap-3 sm:gap-4">
@@ -197,7 +197,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="group relative p-4 sm:p-5 rounded-xl bg-pearl dark:bg-navy-card border border-mist dark:border-white/5 hover:border-orange/30 hover:shadow-lg hover:shadow-orange/5 transition-all overflow-hidden"
+                className="group relative p-4 sm:p-5 rounded-none bg-pearl dark:bg-navy-card border border-mist dark:border-white/5 hover:border-orange/30 hover:shadow-lg hover:shadow-orange/5 transition-all overflow-hidden"
               >
                 {/* Brand pattern on 2nd and 4th cards */}
                 {hasPattern && (
@@ -206,7 +206,7 @@ export default function About() {
                   </div>
                 )}
                 <div className="relative">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-orange/10 flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-none bg-orange/10 flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
                     <Icon size={22} weight="duotone" className="text-orange" />
                   </div>
                   <h4 className="font-jakarta font-bold text-navy dark:text-white text-xs sm:text-sm">

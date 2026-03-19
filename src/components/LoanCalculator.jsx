@@ -94,12 +94,12 @@ export default function LoanCalculator() {
           transition={{ duration: 0.8 }}
           className="max-w-5xl mx-auto"
         >
-          <div className="rounded-3xl overflow-hidden shadow-2xl shadow-navy/10 dark:shadow-black/30 border border-mist dark:border-white/10">
+          <div className="rounded-none overflow-hidden shadow-2xl shadow-navy/10 dark:shadow-black/30 border border-mist dark:border-white/10">
             <div className="grid lg:grid-cols-5">
               {/* Left: Controls */}
               <div className="lg:col-span-3 p-8 sm:p-10 bg-white dark:bg-navy-card transition-colors duration-300">
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-xl bg-orange/10 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-none bg-orange/10 flex items-center justify-center">
                     <Calculator size={22} weight="duotone" className="text-orange" />
                   </div>
                   <h3 className="font-jakarta font-bold text-navy dark:text-white text-xl">
@@ -154,7 +154,7 @@ export default function LoanCalculator() {
                       <button
                         key={term}
                         onClick={() => setLoanTerm(term)}
-                        className={`flex-1 py-3.5 rounded-xl font-jakarta font-semibold text-sm transition-all ${
+                        className={`flex-1 py-3.5 rounded-none font-jakarta font-semibold text-sm transition-all ${
                           loanTerm === term
                             ? 'bg-navy text-orange shadow-lg shadow-navy/20'
                             : 'bg-mist dark:bg-white/5 text-slate dark:text-white/50 hover:bg-navy/5 dark:hover:bg-white/10'
@@ -167,7 +167,7 @@ export default function LoanCalculator() {
                 </div>
 
                 {/* Fee breakdown */}
-                <div className="bg-pearl dark:bg-white/5 rounded-xl p-5 transition-colors duration-300">
+                <div className="bg-pearl dark:bg-white/5 rounded-none p-5 transition-colors duration-300">
                   <h4 className="flex items-center gap-2 text-sm font-jakarta font-semibold text-navy dark:text-white mb-4">
                     <Info size={16} className="text-orange" />
                     Fee Breakdown
@@ -269,14 +269,14 @@ export default function LoanCalculator() {
                 <div className="relative mt-8 space-y-3">
                   <AnimatedButton
                     onClick={handleApply}
-                    className="btn-orange w-full flex items-center justify-center gap-2 py-4 bg-orange text-navy font-jakarta font-bold rounded-xl hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
+                    className="btn-orange w-full flex items-center justify-center gap-2 py-4 bg-orange text-navy font-jakarta font-bold rounded-none hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
                   >
                     <WhatsappLogo weight="fill" size={20} />
                     Apply via WhatsApp
                   </AnimatedButton>
                   <AnimatedButton
                     onClick={handleEmail}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 border border-white/20 text-white font-jakarta font-semibold rounded-xl hover:bg-white/5 transition-colors text-sm"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 border border-white/20 text-white font-jakarta font-semibold rounded-none hover:bg-white/5 transition-colors text-sm"
                   >
                     Apply via Email
                     <ArrowRight size={16} weight="bold" />

@@ -15,7 +15,9 @@
       "WebFetch(domain:api.unsplash.com)",
       "Bash(sed -i 's/className=\"\"py-20 lg:py-32 bg-white dark:bg-navy transition/className=\"\"py-16 sm:py-20 lg:py-32 bg-white dark:bg-navy transition/g' FAQ.jsx)",
       "Bash(sed -i 's/className=\"\"py-20 lg:py-32 relative overflow-hidden transition/className=\"\"py-16 sm:py-20 lg:py-32 relative overflow-hidden transition/g' Requirements.jsx)",
-      "Bash(sed -i 's/className=\"\"py-20 lg:py-32 bg-navy relative overflow/className=\"\"py-16 sm:py-20 lg:py-32 bg-navy relative overflow/g' CTA.jsx)"
+      "Bash(sed -i 's/className=\"\"py-20 lg:py-32 bg-navy relative overflow/className=\"\"py-16 sm:py-20 lg:py-32 bg-navy relative overflow/g' CTA.jsx)",
+      "Bash(find . -name \"*.jsx\" -exec sed -i -e 's/rounded-3xl/rounded-none/g' -e 's/rounded-2xl/rounded-none/g' -e 's/rounded-xl/rounded-none/g' -e 's/rounded-lg/rounded-none/g' -e 's/sm:rounded-none/rounded-none/g' {} +)",
+      "Bash(find . -name \"*.jsx\" -exec sed -i 's/rounded-none rounded-none/rounded-none/g' {} +)"
     ]
   }
 }

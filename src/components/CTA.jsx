@@ -58,7 +58,7 @@ export default function CTA() {
               href="https://wa.me/27676151569"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-orange group inline-flex items-center justify-center gap-3 px-8 py-4 bg-orange text-navy font-jakarta font-bold text-lg rounded-xl hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
+              className="btn-orange group inline-flex items-center justify-center gap-3 px-8 py-4 bg-orange text-navy font-jakarta font-bold text-lg rounded-none hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
             >
               <WhatsappLogo weight="fill" size={22} />
               Apply on WhatsApp
@@ -70,7 +70,7 @@ export default function CTA() {
             </AnimatedButton>
             <AnimatedButton
               href="tel:0100176996"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white font-jakarta font-semibold text-lg rounded-xl hover:bg-white/5 transition-colors"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white font-jakarta font-semibold text-lg rounded-none hover:bg-white/5 transition-colors"
             >
               <Phone size={22} weight="fill" />
               Call Us Now

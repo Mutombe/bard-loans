@@ -100,7 +100,7 @@ export default function Requirements() {
               )}
 
               <div className="relative flex-shrink-0">
-                <div className="w-14 h-14 rounded-2xl bg-white dark:bg-navy-card shadow-lg shadow-navy/5 dark:shadow-black/20 border border-mist dark:border-white/10 flex items-center justify-center transition-colors">
+                <div className="w-14 h-14 rounded-none bg-white dark:bg-navy-card shadow-lg shadow-navy/5 dark:shadow-black/20 border border-mist dark:border-white/10 flex items-center justify-center transition-colors">
                   <Icon size={28} weight="duotone" className="text-orange" />
                 </div>
                 <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-orange text-navy text-[10px] font-mono font-bold flex items-center justify-center">
@@ -108,7 +108,7 @@ export default function Requirements() {
                 </span>
               </div>
 
-              <div className="bg-white dark:bg-navy-card rounded-xl p-5 flex-1 border border-mist dark:border-white/10 hover:border-orange/20 hover:shadow-md transition-all">
+              <div className="bg-white dark:bg-navy-card rounded-none p-5 flex-1 border border-mist dark:border-white/10 hover:border-orange/20 hover:shadow-md transition-all">
                 <h3 className="font-jakarta font-bold text-navy dark:text-white text-lg">{title}</h3>
                 <p className="text-slate dark:text-white/50 text-sm mt-1 font-inter leading-relaxed">{desc}</p>
               </div>
@@ -123,7 +123,7 @@ export default function Requirements() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="mt-12 text-center"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-emerald/10 rounded-xl">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-emerald/10 rounded-none">
             <CheckCircle size={22} weight="fill" className="text-emerald" />
             <p className="text-emerald text-sm font-jakarta font-semibold">
               That&apos;s it! We&apos;ve kept it simple so you can focus on what matters.

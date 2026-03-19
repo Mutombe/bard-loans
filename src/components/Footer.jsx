@@ -53,19 +53,19 @@ export default function Footer() {
                 href="https://wa.me/27676151569"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald hover:text-white transition-all"
+                className="w-10 h-10 rounded-none bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald hover:text-white transition-all"
               >
                 <WhatsappLogo size={20} weight="fill" />
               </a>
               <a
                 href="mailto:info@bardloans.co.za"
-                className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/50 hover:bg-orange hover:text-white transition-all"
+                className="w-10 h-10 rounded-none bg-white/5 flex items-center justify-center text-white/50 hover:bg-orange hover:text-white transition-all"
               >
                 <Envelope size={20} weight="fill" />
               </a>
               <a
                 href="tel:0100176996"
-                className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/50 hover:bg-orange hover:text-navy transition-all"
+                className="w-10 h-10 rounded-none bg-white/5 flex items-center justify-center text-white/50 hover:bg-orange hover:text-navy transition-all"
               >
                 <Phone size={20} weight="fill" />
               </a>
@@ -166,7 +166,7 @@ export default function Footer() {
           </p>
           <button
             onClick={scrollToTop}
-            className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/30 hover:bg-orange hover:text-navy transition-all"
+            className="w-10 h-10 rounded-none bg-white/5 flex items-center justify-center text-white/30 hover:bg-orange hover:text-navy transition-all"
           >
             <ArrowUp size={18} weight="bold" />
           </button>

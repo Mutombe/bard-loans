@@ -114,7 +114,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm text-white/60 text-sm font-inter mb-8"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-white/5 border border-white/10 backdrop-blur-sm text-white/60 text-sm font-inter mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
               Trusted by thousands across South Africa
@@ -189,7 +189,7 @@ export default function Hero() {
             >
               <AnimatedButton
                 href="#calculator"
-                className="btn-orange group inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange text-navy font-jakarta font-bold text-lg rounded-xl hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
+                className="btn-orange group inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange text-navy font-jakarta font-bold text-lg rounded-none hover:bg-orange-dark transition-colors hover:shadow-lg hover:shadow-orange/25"
               >
                 Calculate Your Loan
                 <ArrowRight
@@ -200,7 +200,7 @@ export default function Hero() {
               </AnimatedButton>
               <AnimatedButton
                 href="#about"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-jakarta font-semibold text-lg rounded-xl hover:bg-white/5 backdrop-blur-sm transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-jakarta font-semibold text-lg rounded-none hover:bg-white/5 backdrop-blur-sm transition-colors"
               >
                 Learn More
               </AnimatedButton>
@@ -235,10 +235,10 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               whileHover={{ scale: 1.05, y: -4 }}
               transition={{ delay: 1.2, duration: 0.8, type: 'spring', stiffness: 100 }}
-              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-4 cursor-pointer"
+              className="bg-white/95 backdrop-blur-md rounded-none p-5 shadow-2xl shadow-black/30 mr-4 cursor-pointer"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-none bg-emerald/10 flex items-center justify-center">
                   <CheckCircle size={26} weight="fill" className="text-emerald" />
                 </div>
                 <div>
@@ -268,7 +268,7 @@ export default function Hero() {
               animate={{ opacity: 1, x: 0 }}
               whileHover={{ scale: 1.05, x: -4 }}
               transition={{ delay: 1.5, duration: 0.8, type: 'spring' }}
-              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-16 cursor-pointer"
+              className="bg-white/95 backdrop-blur-md rounded-none p-5 shadow-2xl shadow-black/30 mr-16 cursor-pointer"
             >
               <p className="text-xs text-slate font-inter mb-1">Average Approval Time</p>
               <p className="font-mono font-bold text-navy text-3xl">
@@ -294,10 +294,10 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               whileHover={{ scale: 1.05, y: -4 }}
               transition={{ delay: 1.8, duration: 0.8, type: 'spring', stiffness: 100 }}
-              className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl shadow-black/30 mr-6 cursor-pointer"
+              className="bg-white/95 backdrop-blur-md rounded-none p-5 shadow-2xl shadow-black/30 mr-6 cursor-pointer"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-orange/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-none bg-orange/10 flex items-center justify-center">
                   <ShieldCheck size={26} weight="fill" className="text-orange" />
                 </div>
                 <div>

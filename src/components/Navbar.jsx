@@ -124,7 +124,7 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-inter transition-colors rounded-lg hover:bg-white/5 ${getLinkClasses(link.href)}`}
+                  className={`relative px-4 py-2 text-sm font-inter transition-colors rounded-none hover:bg-white/5 ${getLinkClasses(link.href)}`}
                 >
                   {link.label}
                   {/* Active indicator dot */}
@@ -143,7 +143,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-2">
               <button
                 onClick={toggle}
-                className={`p-2.5 rounded-lg transition-colors ${
+                className={`p-2.5 rounded-none transition-colors ${
                   scrolled && !dark
                     ? 'text-navy/60 hover:bg-navy/5 hover:text-orange'
                     : 'text-white/60 hover:bg-white/10 hover:text-orange'
@@ -179,14 +179,14 @@ export default function Navbar() {
                 href="https://wa.me/27676151569"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 bg-emerald text-white text-sm font-jakarta font-semibold rounded-lg hover:bg-emerald/90 transition-colors"
+                className="flex items-center gap-2 px-4 py-2.5 bg-emerald text-white text-sm font-jakarta font-semibold rounded-none hover:bg-emerald/90 transition-colors"
               >
                 <WhatsappLogo weight="fill" size={18} />
                 WhatsApp
               </a>
               <a
                 href="#calculator"
-                className="btn-orange px-5 py-2.5 bg-orange text-navy text-sm font-jakarta font-bold rounded-lg hover:bg-orange-dark transition-colors"
+                className="btn-orange px-5 py-2.5 bg-orange text-navy text-sm font-jakarta font-bold rounded-none hover:bg-orange-dark transition-colors"
               >
                 Get a Loan
               </a>
@@ -196,7 +196,7 @@ export default function Navbar() {
             <div className="lg:hidden flex items-center gap-1">
               <button
                 onClick={toggle}
-                className={`p-2 rounded-lg transition-colors ${mobileIconColor}`}
+                className={`p-2 rounded-none transition-colors ${mobileIconColor}`}
                 aria-label="Toggle theme"
               >
                 {dark ? <Sun size={22} weight="bold" /> : <Moon size={22} weight="bold" />}
@@ -246,7 +246,7 @@ export default function Navbar() {
                     key={link.label}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`block px-4 py-3 rounded-lg transition-colors font-inter text-sm ${getMobileLinkClasses(link.href)}`}
+                    className={`block px-4 py-3 rounded-none transition-colors font-inter text-sm ${getMobileLinkClasses(link.href)}`}
                   >
                     {link.label}
                     {activeSection === link.href.replace('#', '') && (
@@ -259,7 +259,7 @@ export default function Navbar() {
                     href="https://wa.me/27676151569"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-4 py-3 bg-emerald text-white font-jakarta font-semibold rounded-lg"
+                    className="flex items-center justify-center gap-2 px-4 py-3 bg-emerald text-white font-jakarta font-semibold rounded-none"
                   >
                     <WhatsappLogo weight="fill" size={18} />
                     Chat on WhatsApp
@@ -267,7 +267,7 @@ export default function Navbar() {
                   <a
                     href="#calculator"
                     onClick={() => setMobileOpen(false)}
-                    className="btn-orange text-center px-4 py-3 bg-orange text-navy font-jakarta font-bold rounded-lg"
+                    className="btn-orange text-center px-4 py-3 bg-orange text-navy font-jakarta font-bold rounded-none"
                   >
                     Get a Loan
                   </a>
