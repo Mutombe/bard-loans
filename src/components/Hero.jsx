@@ -177,8 +177,8 @@ export default function Hero() {
               transition={{ delay: 0.8, duration: 0.7 }}
               className="mt-6 text-lg sm:text-xl text-white/60 max-w-lg mx-auto lg:mx-0 font-inter leading-relaxed drop-shadow-md"
             >
-              Quick loans from R500 to R5,000. Simple application, fast approval,
-              and transparent terms. Your financial partner in Sandton.
+              Get quick loans from R500 to R5,000. Simple application, fast approval,
+              and transparent terms.
             </motion.p>
 
             <motion.div
