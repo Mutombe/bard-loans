@@ -48,12 +48,12 @@ export default function Requirements() {
       {/* Background image blended in */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1400&h=900&fit=crop&q=60"
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&h=900&fit=crop&q=60"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Heavy overlay to blend with the section — light mode: pearl wash, dark mode: navy wash */}
-        <div className="absolute inset-0 bg-pearl/90 dark:bg-navy-light/93 backdrop-blur-[2px]" />
+        {/* Lighter overlay so the image is more visible */}
+        <div className="absolute inset-0 bg-pearl/75 dark:bg-navy-light/80" />
       </div>
       {/* Top fade */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-pearl dark:from-navy-light to-transparent z-[1]" />

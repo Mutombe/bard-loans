@@ -8,7 +8,7 @@ export default function CTA() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&h=900&fit=crop&q=60"
+          src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=1600&h=900&fit=crop&crop=faces&q=60"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />

@@ -1,20 +1,44 @@
-import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowRight, ShieldCheck, Clock, CurrencyCircleDollar } from '@phosphor-icons/react'
+
+function HeroCountUp({ end, prefix = '', suffix = '', duration = 2000 }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { margin: '-50px' })
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!isInView) { setCount(0); return }
+    let startTime = null
+    let frame
+    const animate = (ts) => {
+      if (!startTime) startTime = ts
+      const p = Math.min((ts - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setCount(Math.floor(eased * end))
+      if (p < 1) frame = requestAnimationFrame(animate)
+    }
+    frame = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(frame)
+  }, [isInView, end, duration])
+
+  const formatted = end >= 1000 ? count.toLocaleString('en-ZA') : count.toString()
+  return <span ref={ref}>{prefix}{formatted}{suffix}</span>
+}
 import AnimatedButton from './AnimatedButton'
 
 const images = [
   {
-    src: 'https://images.unsplash.com/photo-1581006867287-9f90a3f3a8b0?w=1400&h=900&fit=crop&q=80',
-    alt: 'Johannesburg skyline at sunset',
+    src: 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=1400&h=900&fit=crop&crop=faces&q=80',
+    alt: 'Happy diverse team celebrating success together',
   },
   {
-    src: '/investment-banker-working.jpg',
-    alt: 'Financial advisor analyzing data',
+    src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&h=900&fit=crop&crop=faces&q=80',
+    alt: 'Professionals collaborating with smiles',
   },
   {
-    src: '/Board-room-0x2000-c.jpg',
-    alt: 'Professional boardroom',
+    src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1400&h=900&fit=crop&crop=faces&q=80',
+    alt: 'Confident woman smiling at the camera',
   },
 ]
 
@@ -220,7 +244,9 @@ export default function Hero() {
                 </div>
                 <div>
                   <p className="text-xs text-slate font-inter">Loan Amounts</p>
-                  <p className="font-mono font-bold text-navy text-2xl">R500 – R5K</p>
+                  <p className="font-mono font-bold text-navy text-2xl">
+                    R<HeroCountUp end={500} duration={1200} /> – R<HeroCountUp end={5000} duration={2000} />
+                  </p>
                 </div>
               </div>
               <div className="mt-3 flex items-center gap-2">
@@ -246,7 +272,9 @@ export default function Hero() {
               className="bg-white/95 backdrop-blur-md rounded-none p-5 shadow-2xl shadow-black/30 mr-16 cursor-pointer"
             >
               <p className="text-xs text-slate font-inter mb-1">Fast Approval</p>
-              <p className="font-mono font-bold text-navy text-3xl">24hrs</p>
+              <p className="font-mono font-bold text-navy text-3xl">
+                <HeroCountUp end={24} duration={1500} />hrs
+              </p>
               <div className="flex gap-1 mt-3">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <motion.div

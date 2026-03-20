@@ -126,11 +126,21 @@ export default function FAQ() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-navy dark:bg-navy-card rounded-none p-8 text-center border border-transparent dark:border-white/10"
+              className="bg-navy dark:bg-navy-card rounded-none text-center border border-transparent dark:border-white/10 overflow-hidden"
             >
-              <div className="w-16 h-16 mx-auto rounded-none bg-orange/10 flex items-center justify-center mb-5">
-                <ChatCircleDots size={32} weight="duotone" className="text-orange" />
+              {/* Friendly face */}
+              <div className="relative h-36 -mx-0 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=250&fit=crop&crop=faces&q=70"
+                  alt="Friendly team member ready to help"
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy dark:from-navy-card via-navy/30 dark:via-navy-card/30 to-transparent" />
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-12 h-12 rounded-none bg-orange/20 backdrop-blur-sm flex items-center justify-center">
+                  <ChatCircleDots size={24} weight="duotone" className="text-orange" />
+                </div>
               </div>
+              <div className="p-6 pt-4">
               <h3 className="font-jakarta font-bold text-white text-xl">
                 Still have questions?
               </h3>
@@ -154,6 +164,7 @@ export default function FAQ() {
                 >
                   info@bardloans.co.za
                 </a>
+              </div>
               </div>
             </motion.div>
           </div>

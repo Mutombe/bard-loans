@@ -2,7 +2,6 @@ import { Toaster } from 'sonner'
 import { ThemeProvider } from './ThemeContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import TrustBar from './components/TrustBar'
 import About from './components/About'
 import SectionDivider from './components/SectionDivider'
 import Offerings from './components/Offerings'
@@ -29,7 +28,6 @@ function App() {
         />
         <Navbar />
         <Hero />
-        <TrustBar />
         <About />
         <SectionDivider
           pattern="diamond"

@@ -20,7 +20,7 @@ const offerings = [
     iconColor: 'text-purple-600 dark:text-purple-400',
     featured: true,
     href: '#calculator',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=400&fit=crop&q=60',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop&crop=faces&q=60',
     lgSpan: 'lg:col-span-4',
   },
   {
@@ -87,7 +87,7 @@ export default function Offerings() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&h=900&fit=crop&q=60"
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1400&h=900&fit=crop&q=60"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
