@@ -49,8 +49,8 @@ export default function CTA() {
             <span className="text-orange">Starts Today</span>
           </h2>
           <p className="mt-6 text-white/50 text-lg font-inter max-w-2xl mx-auto">
-            Join thousands of South Africans who trust Bard Loans for their
-            financial needs. Apply in minutes, get funded in hours.
+            Take the first step toward financial freedom. Apply in minutes,
+            get funded in hours. Simple, transparent, trustworthy.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -84,7 +84,7 @@ export default function CTA() {
             <span className="text-white/10">|</span>
             <span>Transparent terms</span>
             <span className="text-white/10">|</span>
-            <span>Trusted by thousands</span>
+            <span>Sandton based</span>
           </div>
         </motion.div>
       </div>

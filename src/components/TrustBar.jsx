@@ -1,60 +1,18 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { ShieldCheck, Users, Handshake, ChartLineUp } from '@phosphor-icons/react'
+import { motion } from 'framer-motion'
+import { ShieldCheck, Clock, CurrencyCircleDollar, FileText } from '@phosphor-icons/react'
 
-const stats = [
-  { icon: Users, end: 5000, prefix: '', suffix: '+', label: 'Clients Served', duration: 2000 },
-  { icon: Handshake, end: 10, prefix: 'R', suffix: 'M+', label: 'Loans Disbursed', duration: 1500 },
-  { icon: ChartLineUp, end: 98, prefix: '', suffix: '%', label: 'Approval Rate', duration: 1800 },
-  { icon: ShieldCheck, end: 100, prefix: '', suffix: '%', label: 'Transparent', duration: 2000 },
+const benefits = [
+  { icon: Clock, title: '24hr Approval', desc: 'Get approved in as little as one business day' },
+  { icon: CurrencyCircleDollar, title: 'R500 – R5,000', desc: 'Flexible loan amounts to suit your needs' },
+  { icon: FileText, title: 'Simple Process', desc: 'Minimal paperwork, maximum convenience' },
+  { icon: ShieldCheck, title: 'Transparent Terms', desc: 'No hidden fees, no surprises — ever' },
 ]
-
-function CountUp({ end, prefix, suffix, duration }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { margin: '-50px' })
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!isInView) {
-      setCount(0)
-      return
-    }
-
-    let startTime = null
-    let animationFrame
-
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(eased * end))
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate)
-      }
-    }
-
-    animationFrame = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(animationFrame)
-  }, [isInView, end, duration])
-
-  const formatted = end >= 1000
-    ? count.toLocaleString('en-ZA')
-    : count.toString()
-
-  return (
-    <span ref={ref}>
-      {prefix}{formatted}{suffix}
-    </span>
-  )
-}
 
 export default function TrustBar() {
   return (
     <section className="relative overflow-hidden">
-      {/* ═══ Full-width gradient bridge zone: hero dark → about light ═══ */}
+      {/* Full-width gradient bridge zone */}
       <div className="absolute inset-0">
-        {/* Gradient: dark at top (from hero) → light at bottom (into about) */}
         <div
           className="absolute inset-0 dark:hidden"
           style={{
@@ -67,8 +25,6 @@ export default function TrustBar() {
             background: 'linear-gradient(to bottom, var(--color-navy-deep) 0%, var(--color-navy) 40%, var(--color-navy) 100%)',
           }}
         />
-
-        {/* Diamond pattern texture across the bridge */}
         <div className="absolute inset-0 text-navy dark:text-white opacity-[0.03] dark:opacity-[0.05]">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -80,12 +36,9 @@ export default function TrustBar() {
             <rect width="100%" height="100%" fill="url(#trust-diamond)" />
           </svg>
         </div>
-
-        {/* Warm glow behind the card */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-orange/5 rounded-full blur-[100px]" />
       </div>
 
-      {/* The floating stats card */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -95,9 +48,9 @@ export default function TrustBar() {
           className="bg-white/80 dark:bg-navy-card/80 backdrop-blur-xl rounded-none shadow-xl shadow-navy/10 dark:shadow-black/30 border border-white/60 dark:border-white/10 p-6 sm:p-8 transition-colors duration-300"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {stats.map(({ icon: Icon, end, prefix, suffix, label, duration }, i) => (
+            {benefits.map(({ icon: Icon, title, desc }, i) => (
               <motion.div
-                key={label}
+                key={title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -113,15 +66,8 @@ export default function TrustBar() {
                 >
                   <Icon size={24} weight="duotone" className="text-orange" />
                 </motion.div>
-                <p className="font-mono font-medium text-2xl sm:text-3xl text-navy dark:text-white">
-                  <CountUp
-                    end={end}
-                    prefix={prefix}
-                    suffix={suffix}
-                    duration={duration}
-                  />
-                </p>
-                <p className="text-sm text-slate dark:text-white/50 font-inter mt-1">{label}</p>
+                <p className="font-jakarta font-bold text-sm sm:text-base text-navy dark:text-white">{title}</p>
+                <p className="text-xs text-slate dark:text-white/50 font-inter mt-1">{desc}</p>
               </motion.div>
             ))}
           </div>

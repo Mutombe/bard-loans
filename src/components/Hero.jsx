@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { ArrowRight, ShieldCheck, Clock, CurrencyCircleDollar, CheckCircle } from '@phosphor-icons/react'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, ShieldCheck, Clock, CurrencyCircleDollar } from '@phosphor-icons/react'
 import AnimatedButton from './AnimatedButton'
 
 const images = [
@@ -27,29 +27,6 @@ const textLine = {
   }),
 }
 
-function HeroCountUp({ end, prefix = '', suffix = '', duration = 2000 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { margin: '-50px' })
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!isInView) { setCount(0); return }
-    let startTime = null
-    let frame
-    const animate = (ts) => {
-      if (!startTime) startTime = ts
-      const p = Math.min((ts - startTime) / duration, 1)
-      const eased = 1 - Math.pow(1 - p, 3)
-      setCount(Math.floor(eased * end))
-      if (p < 1) frame = requestAnimationFrame(animate)
-    }
-    frame = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(frame)
-  }, [isInView, end, duration])
-
-  const formatted = end >= 1000 ? count.toLocaleString('en-ZA') : count.toString()
-  return <span ref={ref}>{prefix}{formatted}{suffix}</span>
-}
 
 export default function Hero() {
   const [currentImage, setCurrentImage] = useState(0)
@@ -117,7 +94,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-white/5 border border-white/10 backdrop-blur-sm text-white/60 text-sm font-inter mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
-              Trusted by thousands across South Africa
+              Your trusted lending partner in Sandton
             </motion.div>
 
             <h1 className="font-jakarta font-extrabold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight">
@@ -226,9 +203,9 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Right: Clickable floating cards with count-ups ── */}
+          {/* ── Right: Clickable floating benefit cards ── */}
           <div className="lg:col-span-5 hidden lg:flex flex-col items-end justify-center gap-6 relative h-[500px]">
-            {/* Approved card → links to calculator */}
+            {/* Loan range card → links to calculator */}
             <motion.a
               href="#calculator"
               initial={{ opacity: 0, y: 40, scale: 0.9 }}
@@ -238,42 +215,38 @@ export default function Hero() {
               className="bg-white/95 backdrop-blur-md rounded-none p-5 shadow-2xl shadow-black/30 mr-4 cursor-pointer"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-none bg-emerald/10 flex items-center justify-center">
-                  <CheckCircle size={26} weight="fill" className="text-emerald" />
+                <div className="w-12 h-12 rounded-none bg-orange/10 flex items-center justify-center">
+                  <CurrencyCircleDollar size={26} weight="fill" className="text-orange" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate font-inter">Loan Approved</p>
-                  <p className="font-mono font-bold text-navy text-2xl">
-                    R<HeroCountUp end={5000} duration={2000} />
-                  </p>
+                  <p className="text-xs text-slate font-inter">Loan Amounts</p>
+                  <p className="font-mono font-bold text-navy text-2xl">R500 – R5K</p>
                 </div>
               </div>
               <div className="mt-3 flex items-center gap-2">
-                <div className="h-1.5 flex-1 rounded-full bg-emerald/20">
+                <div className="h-1.5 flex-1 rounded-full bg-orange/20">
                   <motion.div
-                    className="h-full rounded-full bg-emerald"
-                    initial={{ width: 0 }}
+                    className="h-full rounded-full bg-orange"
+                    initial={{ width: '10%' }}
                     animate={{ width: '100%' }}
-                    transition={{ delay: 1.8, duration: 1.5, ease: 'easeOut' }}
+                    transition={{ delay: 1.8, duration: 2, ease: 'easeOut' }}
                   />
                 </div>
-                <span className="text-[10px] text-emerald font-mono font-medium">Complete</span>
+                <span className="text-[10px] text-orange font-mono font-medium">Flexible</span>
               </div>
             </motion.a>
 
-            {/* Stats card → links to about */}
+            {/* Fast approval card → links to about */}
             <motion.a
-              href="#about"
+              href="#requirements"
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               whileHover={{ scale: 1.05, x: -4 }}
               transition={{ delay: 1.5, duration: 0.8, type: 'spring' }}
               className="bg-white/95 backdrop-blur-md rounded-none p-5 shadow-2xl shadow-black/30 mr-16 cursor-pointer"
             >
-              <p className="text-xs text-slate font-inter mb-1">Average Approval Time</p>
-              <p className="font-mono font-bold text-navy text-3xl">
-                <HeroCountUp end={24} duration={1200} />hrs
-              </p>
+              <p className="text-xs text-slate font-inter mb-1">Fast Approval</p>
+              <p className="font-mono font-bold text-navy text-3xl">24hrs</p>
               <div className="flex gap-1 mt-3">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <motion.div
@@ -287,9 +260,9 @@ export default function Hero() {
               </div>
             </motion.a>
 
-            {/* Clients served card → links to about */}
+            {/* Transparent terms card → links to calculator */}
             <motion.a
-              href="#about"
+              href="#calculator"
               initial={{ opacity: 0, y: -30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               whileHover={{ scale: 1.05, y: -4 }}
@@ -297,14 +270,12 @@ export default function Hero() {
               className="bg-white/95 backdrop-blur-md rounded-none p-5 shadow-2xl shadow-black/30 mr-6 cursor-pointer"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-none bg-orange/10 flex items-center justify-center">
-                  <ShieldCheck size={26} weight="fill" className="text-orange" />
+                <div className="w-12 h-12 rounded-none bg-emerald/10 flex items-center justify-center">
+                  <ShieldCheck size={26} weight="fill" className="text-emerald" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate font-inter">Clients Served</p>
-                  <p className="font-mono font-bold text-navy text-2xl">
-                    <HeroCountUp end={5000} suffix="+" duration={2200} />
-                  </p>
+                  <p className="text-xs text-slate font-inter">No Hidden Fees</p>
+                  <p className="font-jakarta font-bold text-navy text-lg">100% Transparent</p>
                 </div>
               </div>
             </motion.a>

@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { CheckCircle, Heart, Scales, UsersThree } from '@phosphor-icons/react'
 
 const values = [
@@ -29,33 +28,11 @@ const values = [
   },
 ]
 
-const aboutStats = [
-  { end: 10, suffix: '+', label: 'Years empowering futures', duration: 1200 },
-  { end: 5, suffix: 'K+', label: 'Happy clients', duration: 1000 },
-  { end: 24, suffix: 'hr', label: 'Fast approval', duration: 1400 },
+const aboutBenefits = [
+  { value: '24hr', label: 'Fast approval' },
+  { value: 'R5K', label: 'Loans up to' },
+  { value: '1-3mo', label: 'Flexible terms' },
 ]
-
-function AboutCountUp({ end, suffix = '', duration = 1500 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { margin: '-30px' })
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!isInView) { setCount(0); return }
-    let start = null
-    let frame
-    const run = (ts) => {
-      if (!start) start = ts
-      const p = Math.min((ts - start) / duration, 1)
-      setCount(Math.floor((1 - Math.pow(1 - p, 3)) * end))
-      if (p < 1) frame = requestAnimationFrame(run)
-    }
-    frame = requestAnimationFrame(run)
-    return () => cancelAnimationFrame(frame)
-  }, [isInView, end, duration])
-
-  return <span ref={ref}>{count}{suffix}</span>
-}
 
 function DiamondPattern() {
   return (
@@ -148,7 +125,7 @@ export default function About() {
               </p>
             </motion.div>
 
-            {/* Stat bar with count-up */}
+            {/* Benefits bar */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -156,13 +133,11 @@ export default function About() {
               transition={{ delay: 0.4, duration: 0.6, type: 'spring' }}
               className="mt-6 sm:mt-8 inline-flex items-center gap-3 sm:gap-4 bg-navy dark:bg-navy-card rounded-none p-4 sm:p-5 shadow-lg border border-transparent dark:border-white/10"
             >
-              {aboutStats.map(({ end, suffix, label, duration }, i) => (
+              {aboutBenefits.map(({ value, label }, i) => (
                 <div key={label} className="flex items-center gap-3 sm:gap-4">
                   {i > 0 && <div className="w-px h-8 sm:h-10 bg-white/10" />}
                   <div className="text-center">
-                    <p className="font-mono text-2xl sm:text-3xl font-bold text-orange">
-                      <AboutCountUp end={end} suffix={suffix} duration={duration} />
-                    </p>
+                    <p className="font-mono text-2xl sm:text-3xl font-bold text-orange">{value}</p>
                     <p className="text-white/70 text-[10px] sm:text-xs mt-1 font-inter">{label}</p>
                   </div>
                 </div>
